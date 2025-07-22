@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fake News Detector</title>
+</head>
+<body>
+    <h2>Fake News Detection</h2>
+    <form method="POST" action="/predict">
+        <label>Title:</label><br>
+        <input type="text" name="title" required><br><br>
+
+        <label>Subject:</label><br>
+        <input type="text" name="subject" required><br><br>
+
+        <label>Text:</label><br>
+        <textarea name="text" rows="8" cols="50" required></textarea><br><br>
+
+        <input type="submit" value="Predict">
+    </form>
+
+    {% if prediction %}
+        <h3>Prediction: {{ prediction }}</h3>
+    {% endif %}
+</body>
+</html>
