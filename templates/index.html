@@ -1,29 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
     <title>Fake News Detector</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f6f6f6; padding: 40px; }
-        .container { background: white; padding: 32px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); max-width: 500px; margin: auto; }
-        h1 { margin-bottom: 20px; color: #333; }
-        input, textarea { width: 96%; padding: 8px; margin-bottom: 14px; border: 1px solid #ccc; border-radius: 4px; }
-        button { background: #1877f2; color: white; padding: 10px 24px; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; }
-        button:hover { background: #0053ba; }
-        .result { margin-top: 20px; font-weight: bold; font-size: 20px; }
+        body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 40px; }
+        .container { background: #fff; padding: 30px; border-radius: 10px; max-width: 600px; margin: auto; box-shadow: 0 0 8px #ccc; }
+        textarea { width: 100%; height: 120px; margin: 10px 0; padding: 10px; border-radius: 5px; border: 1px solid #ccc; }
+        .result { font-size: 1.2em; font-weight: bold; margin-top: 15px; }
+        input[type="submit"] { padding: 10px 22px; border: none; background: #007BFF; color: #fff; border-radius: 5px; cursor: pointer;}
+        input[type="submit"]:hover { background: #0056b3; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Fake News Detector</h1>
-        <form action="/predict" method="post">
-            <input type="text" name="title" placeholder="Enter News Title" required><br>
-            <input type="text" name="subject" placeholder="Enter News Subject/Category" required><br>
-            <textarea name="text" rows="8" placeholder="Enter Full News Article" required></textarea><br>
-            <button type="submit">Check News</button>
+        <h2>Fake News Detection App</h2>
+        <form method="post">
+            <label for="news">Enter News Text:</label>
+            <textarea name="news" id="news" required>{{ user_input }}</textarea>
+            <br>
+            <input type="submit" value="Check">
         </form>
         {% if prediction %}
-            <div class="result">{{ prediction }}</div>
+        <div class="result">
+            Result: <span style="color: {% if prediction == 'Fake News' %}red{% else %}green{% endif %};">{{ prediction }}</span>
+        </div>
         {% endif %}
     </div>
 </body>
